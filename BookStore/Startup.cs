@@ -1,4 +1,5 @@
 using BookStore.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,12 @@ namespace BookStore
             services.AddDbContext<BookStoreContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/user/login";
+                    options.AccessDeniedPath = "/";
+                });
             services.AddControllersWithViews();
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
@@ -44,6 +51,7 @@ namespace BookStore
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

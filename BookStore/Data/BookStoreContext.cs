@@ -24,5 +24,6 @@ namespace BookStore.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionStatus> TransactionStatuses { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }
