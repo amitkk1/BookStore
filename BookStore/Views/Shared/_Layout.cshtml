@@ -9,25 +9,25 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStore</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <div class="navbar header-background my-0">
+                <div class="col-2 align-items-center">
+                    <a class="d-inline-block" href="/">
+                        <img src="~/lib/pictures/login.png" width="60" class="my-2"/>
+                    </a>
                 </div>
-            </div>
-        </nav>
+                <div class="col-3">
+                    <input class="search-font float-right my-2" dir="rtl" />
+                    <img src="~/lib/pictures/search.png" width="40" class="float-right mx-2 my-2" />
+                </div>
+                <div class="col-3">
+                </div>
+                <div class="col-4">
+                    <a href="/">
+                        <img src="~/lib/pictures/logo.png" width="140" class="float-right"/>
+                        <h1 dir="rtl" class="logo-title my-2 mx-2">ספרים שאוהבים</h1>
+                    </a>
+                </div>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
