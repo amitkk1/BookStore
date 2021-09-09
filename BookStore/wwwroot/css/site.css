@@ -15,3 +15,9 @@ a:hover {
 .header-background {
     background-color: rgb(182,137,115)
 }
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width:50%;
+}
