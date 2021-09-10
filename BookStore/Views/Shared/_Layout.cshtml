@@ -5,41 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BookStore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/fonts/Rubik/stylesheet.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <div class="navbar header-background my-0">
-                <div class="col-2 align-items-center">
-                    <a class="d-inline-block" href="/">
-                        <img src="~/lib/pictures/login.png" width="60" class="my-2"/>
-                    </a>
-                </div>
-                <div class="col-3">
-                    <input class="search-font float-right my-2" dir="rtl" />
-                    <img src="~/lib/pictures/search.png" width="40" class="float-right mx-2 my-2" />
-                </div>
-                <div class="col-3">
-                </div>
-                <div class="col-4">
-                    <a href="/">
-                        <img src="~/lib/pictures/logo.png" width="140" class="float-right"/>
-                        <h1 dir="rtl" class="logo-title my-2 mx-2">ספרים שאוהבים</h1>
-                    </a>
-                </div>
-        </div>
+        <nav class="navbar header my-0">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <a href="/" class="navbar-title">
+                    <img src="~/lib/pictures/logo.png" class="navbar-title-image" />
+                    <h1 class="navbar-title-text">ספרים שאוהבים</h1>
+                </a>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-10 d-flex align-items-center">
+                <input class="navbar-search-input col-11 form-control" placeholder="חיפוש" />
+                <i class="search-icon col-1"></i>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-2 align-items-end">
+                <i class="account-icon col-12"></i>
+            </div>
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer id ="footer">
-        <div class="container w-25 float-left" style="background-color:black; position:sticky">
-            <img src="~/lib/pictures/cart.png" width="50" class="float-left"/>
-        </div>
-    </footer>
+    <div class="cart-container">
+        <i class="cart-container-image">
+            <span class="cart-container-number">1</span>
+        </i>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
