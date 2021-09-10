@@ -58,6 +58,12 @@ a:hover {
     background-color: #b68973;
 }
 
+.header-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
+}
+
 .cart-container {
     cursor: pointer;
     position: fixed;
