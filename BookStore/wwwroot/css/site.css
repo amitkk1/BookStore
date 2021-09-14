@@ -1,71 +1,107 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿* {
+    font-family: Rubik;
+    direction: rtl;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.navbar-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: right;
+    text-align: right;
+    min-width: 380px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+h1.navbar-title-text {
+    color: #1e212d;
+    font-size: 33px;
+    padding-top: 10px;
+    text-align: center;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.navbar-title-image {
+    max-height: 70px;
+    max-width: 30%;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+input.navbar-search-input {
+    font-size: 20px;
+    color: grey;
+    text-align: right;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+i.search-icon, i.account-icon {
+    cursor: pointer;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    padding: 0 4px;
+    display: inline-block;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+i.search-icon {
+    background-image: url(../lib/pictures/search.png);
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+i.account-icon {
+    background-image: url(../lib/pictures/login.png)
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+a:hover {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    background-color: #b68973;
+}
+
+.header-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
+}
+
+.cart-container {
+    cursor: pointer;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    bottom: 5%;
+    left: 1%;
+    background-color: #1e212d;
+    padding: 15px;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 0.2s;
+}
+.cart-container:hover{
+    transform: scale(1.2);
+}
+
+i.cart-container-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../lib/pictures/cart.png);
+    width: 50px;
+    height: 50px;
+}
+
+span.cart-container-number {
+    font-style: normal;
+    color: #1e212d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eabf9f;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
