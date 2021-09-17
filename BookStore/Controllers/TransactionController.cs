@@ -23,6 +23,11 @@ namespace BookStore.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Cart()
+        {
+            return View(await _context.Transactions.ToListAsync());
+        }
+
         public async Task<IActionResult> List()
         {
             return View(await _context.Transactions.ToListAsync());

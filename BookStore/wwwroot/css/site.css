@@ -1,4 +1,6 @@
-﻿* {
+﻿/************************** LAYOUT CSS **************************/
+
+* {
     font-family: Rubik;
     direction: rtl;
 }
@@ -104,4 +106,132 @@ span.cart-container-number {
     right: 0;
     border-radius: 50%;
     box-sizing: border-box;
+}
+
+/************************** CART CSS **************************/
+
+.payment-info {
+    background: #1e212d;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold
+}
+
+.product-details {
+    padding: 10px;
+}
+
+.cart {
+    background: #eee
+}
+
+.p-about {
+    font-size: 12px
+}
+
+.table-shadow {
+    -webkit-box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42);
+    box-shadow: 5px 5px 15px -2px rgba(0, 0, 0, 0.42)
+}
+
+.type {
+    font-weight: 400;
+    font-size: 10px
+}
+
+label.radio {
+    cursor: pointer
+}
+
+    label.radio input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        pointer-events: none
+    }
+
+    label.radio span {
+        padding: 1px 12px;
+        border: 2px solid #faf3e0;
+        display: inline-block;
+        color: #8f37aa;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: 300
+    }
+
+    label.radio input:checked + span {
+        border-color: #faf3e0;
+        background-color: #b68973;
+        color: #fff
+    }
+
+.credit-inputs {
+    background: #fff;
+    color: #fff !important;
+    border-color: #fff;
+}
+
+    .credit-inputs::placeholder {
+        font-size: 13px;
+    }
+
+.credit-card-label {
+    font-size: 12px;
+    font-weight: 300;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.form-control.credit-inputs:focus {
+    background: #faf3e0;
+    border: #fff;
+    border-color: #faf3e0;
+}
+
+.line {
+    border-bottom: 1px solid rgb(234, 191, 159)
+}
+
+.information span {
+    font-size: 12px;
+    font-weight: 500
+}
+
+.information {
+    margin-bottom: 5px
+}
+
+.items {
+    background-color: #ffff;
+    -webkit-box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08)
+}
+
+.checkout-button {
+    background-color: #b68973;
+    color: #fff;
+}
+
+.remove-product-icon {
+    width: 30px;
+    cursor:pointer;
+}
+
+.btn-quantity {
+    cursor: pointer;
+    width: 20px;
+    font-size: 14px;
+}
+
+.quantity-group {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 30px;
+    justify-content: center;
 }

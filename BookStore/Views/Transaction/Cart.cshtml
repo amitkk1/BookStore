@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<!--
+    todo:
+    * dropdown for מיין לפי
+    * buttons for quantity
+    * shipping component
+-->
+
+<div class="container mt-5 p-3 rounded cart">
+    <div class="row no-gutters">
+        <div class="col-md-8">
+            <div class="product-details mr-2">
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fa fa-long-arrow-left"></i>
+                    <span class="ml-1 font-weight-bolder">סל הקניות</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>יש 4 פריטים בסל הקניות שלך</span>
+                    <div class="d-flex flex-row align-items-center">
+                        <span dir="rtl" class="text-black-50">מיין לפי:</span>
+                        <div class="price ml-2"><span class="mr-1">מחיר</span><i class="fa fa-angle-down"></i></div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/lib/pictures/murder_in_saturday_morining.png" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block">רצח בשבת בבוקר - בתיה גור</span>
+                            <span dir="rtl" class="product-quantity mx-2">כמות: 2</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block ml-5 font-weight-bold">30 ש"ח</span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                        <img src="~/lib/pictures/remove-icon.png" class="remove-product-icon"/>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/lib/pictures/murder_in_saturday_morining.png" width="40">
+                        <div class="mr-2">
+                            <span dir="rtl" class="font-weight-bold d-block">רצח בשבת בבוקר - בתיה גור</span>
+                        </div>
+                        <div class="d-flex center row-3 px-3">
+                            <div class="input-group quantity-group m-2">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                                        <span class="text-center">-</span>
+                                    </button>
+                                </span>
+                                <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                                        <span class="text-center">+</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block ml-5 font-weight-bold">30 ש"ח</span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                        <img src="~/lib/pictures/remove-icon.png" class="remove-product-icon" />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/lib/pictures/murder_in_saturday_morining.png" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block mx-2">רצח בשבת בבוקר - בתיה גור</span>
+                            <span dir="rtl" class="product-quantity mx-2">כמות: 4</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block ml-5 font-weight-bold">30 ש"ח</span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                        <img src="~/lib/pictures/remove-icon.png" class="remove-product-icon" />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row">
+                        <img class="rounded" src="~/lib/pictures/murder_in_saturday_morining.png" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block mx-2">רצח בשבת בבוקר - בתיה גור</span>
+                            <span dir="rtl" class="product-quantity mx-2">כמות: 2</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="d-block ml-5 font-weight-bold">30 ש"ח</span>
+                        <i class="fa fa-trash-o ml-3 text-black-50"></i>
+                        <img src="~/lib/pictures/remove-icon.png" class="remove-product-icon" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div dir="rtl" class="payment-info">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>פרטי אשראי</span>
+                    <img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30">
+                </div>
+                <label class="credit-card-label my-2">חברת אשראי</label>
+                    <label class="radio ml-2">
+                        <input type="radio" name="card" value="payment" checked>
+                        <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span>
+                    </label>
+                    <label class="radio ml-2">
+                        <input type="radio" name="card" value="payment">
+                        <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span>
+                    </label>
+                    <label class="radio ml-2">
+                        <input type="radio" name="card" value="payment">
+                        <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span>
+                    </label>
+                    <label class="radio ml-2">
+                        <input type="radio" name="card" value="payment"> <span>
+                            <img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" />
+                        </span>
+                    </label>
+                <div>
+                    <label class="credit-card-label my-2">שם בעל הכרטיס</label>
+                    <input type="text" class="form-control credit-inputs" placeholder="שם מלא">
+                </div>
+                <div>
+                    <label class="credit-card-label my-2">מספר אשראי</label>
+                    <input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="credit-card-label my-2">תוקף הכרטיס</label>
+                        <input type="text" class="form-control credit-inputs" placeholder="12/24">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="credit-card-label my-2">CVV</label>
+                        <input type="text" class="form-control credit-inputs" placeholder="342">
+                    </div>
+                </div>
+                <hr class="line">
+                <div class="d-flex justify-content-between information">
+                    <span>סכום קניה</span><span>80 ש"ח</span>
+                </div>
+                <div class="d-flex justify-content-between information">
+                    <span>משלוח</span><span>10 ש"ח</span>
+                </div>
+                <div class="d-flex justify-content-between information">
+                    <span>סה"כ לתשלום</span><span>90 ש"ח</span>
+                </div>
+                <button class="btn checkout-button btn-block d-flex justify-content-between mt-3" type="button">
+                    <span>שלם עכשיו<i class="fa fa-long-arrow-right ml-1"></i></span>
+                    <span dir="rtl">90 ש"ח</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
