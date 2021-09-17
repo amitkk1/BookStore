@@ -19,6 +19,13 @@ namespace BookStore.Data
                 return;
             }
 
+
+            Genre novel = new Genre { Name = " רומן " };
+            Genre thriller = new Genre { Name = "מותחן" };
+
+            context.Genres.AddRange(novel, thriller); 
+            context.SaveChanges();
+
             #region Roles
             Role adminRole = new Role() { Name = RoleTypes.Admin };
             Role customerRole = new Role { Name = RoleTypes.Customer };

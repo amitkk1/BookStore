@@ -4,68 +4,51 @@
     ViewData["Title"] = "List";
 }
 
-<h1>BookList</h1>
+<link rel="stylesheet" href="~/css/book/list.css" />
+<script src="~/js/book/list.js"></script>
+<h1 class="navbar-title-text">הספרים שלנו</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuantityInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsValid)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantityInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsValid)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<tbody>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <select id="GenreId" style="width:200px">
+                    <option>Select Country</option>
+                </select>
+            </div>
+            <div class="col-sm-10">
+                <div class="row row-cols-auto">
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col">
+                            <div class="card h-100" style="width: 10rem;">
+                                <a asp-action="Details" asp-route-id="@item.ID">
+                                    <img src=@Html.DisplayFor(modelItem => item.Picture) class="card-img-top" alt="...">
+                                    <button type="button" class="btn"><i class="cart-image"></i></button>
+                                    <div class="card-footer text-center">
+                                        <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
+                                        <br />
+                                        <small class="text-muted">@Html.DisplayFor(modelItem => item.Author)</small>
+                                        <br />
+                                        <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</tbody >
+
+
+
+
+
+
+
+    <script src="~/js/book/list.js"></script>

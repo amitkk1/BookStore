@@ -8,53 +8,34 @@
 
 <div>
     <h4>Book</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PublishDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumberOfPages)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumberOfPages)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantityInStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantityInStock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsValid)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsValid)
-        </dd>
-    </dl>
+    
+    
+        <div class="container">
+            <div class="card ">
+                <div class="row g-0">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">  @Html.DisplayFor(model => model.Name)</h5>
+                            <p class="card-text">@Html.DisplayFor(model => model.Author) מחבר:</p>
+                            <p class="card-text">@Html.DisplayFor(model => model.Price) מחיר:</p>
+                            <p class="card-text">@Html.DisplayFor(model => model.NumberOfPages) מס עמודים:</p>
+                            <p class="card-text">@Html.DisplayFor(model => model.PublishDate) תאריך הוצאה לאור:</p>
+                            <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.Description)</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://s3-eu-west-1.amazonaws.com/simania-public-assets/bookimages/covers95/957733.jpg" class="img-fluid rounded-start" alt="...">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+

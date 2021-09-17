@@ -1,4 +1,5 @@
 ﻿using BookStore.Data;
+using BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -29,6 +30,12 @@ namespace BookStore.Controllers
         public async Task<IActionResult> List()
         {
             return View(await _context.Books.ToListAsync());
+        }
+
+        public JsonResult GetGenreList()
+        {
+            List<Genre> genreList = _context.Genres.ToList();
+            return Json(genreList);
         }
 
         public async Task<IActionResult> Details(int? id)

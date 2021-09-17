@@ -1,0 +1,52 @@
+﻿* {
+    font-family: Rubik;
+    direction: rtl;
+}
+
+p{
+    font-family: Rubik;
+    direction: rtl;
+}
+
+
+.card {
+    position: relative;
+}
+
+.card img {
+        width: 100%;
+        height: auto;
+       
+}
+
+i.cart-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../../lib/pictures/cart.png);
+    width: 25px;
+    height: 25px;
+    
+}
+
+.btn-card {
+
+    display: none;
+}
+
+.card:hover .btn-card {
+    display: inline-block;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #b68973;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.card .btn-card:hover {
+    background-color: black;
+}
