@@ -4,14 +4,12 @@
 // Write your JavaScript code.
 
 
-$(document).ready(function (data) {
-    $.get('BookController', function (data) {
+$(document).ready(function () {
         $.get("GetGenreList", function (data) {
             $("#GenreId").empty
             $.each(data, function (index, row) {
                 $("#GenreId").append("<option value='" + row.ID + "'>" + row.Name + "<option>")
             });
         });
-    });
 });
 

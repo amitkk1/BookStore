@@ -11,7 +11,7 @@ namespace BookStore.Models
         
         //public byte[] PictureData { get; set; }
 
-        public string url { get; set; }
+        public string Url { get; set; }
 
         public bool IsValid { get; set; } = true;
     }

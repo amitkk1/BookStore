@@ -5,50 +5,53 @@
 }
 
 <link rel="stylesheet" href="~/css/book/list.css" />
-<script src="~/js/book/list.js"></script>
-<h1 class="navbar-title-text">הספרים שלנו</h1>
+@section Scripts
+{
+    <script src="~/js/book/list.js"></script>
+}
+    <h1 class="navbar-title-text">הספרים שלנו</h1>
 
 
-<tbody>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <select id="GenreId" style="width:200px">
-                    <option>Select Country</option>
-                </select>
-            </div>
-            <div class="col-sm-10">
-                <div class="row row-cols-auto">
-                    @foreach (var item in Model)
-                    {
+    <tbody>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select id="GenreId" style="width:200px">
+                        <option>Select Country</option>
+                    </select>
+                </div>
+                <div class="col-sm-10">
+                    <div class="row row-cols-auto">
+                        @foreach (var item in Model)
+                        {
 
-                        <div class="col">
-                            <div class="card h-100" style="width: 10rem;">
-                                <a asp-action="Details" asp-route-id="@item.ID">
-                                    <img src=@Html.DisplayFor(modelItem => item.Picture) class="card-img-top" alt="...">
-                                    <button type="button" class="btn"><i class="cart-image"></i></button>
-                                    <div class="card-footer text-center">
-                                        <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
-                                        <br />
-                                        <small class="text-muted">@Html.DisplayFor(modelItem => item.Author)</small>
-                                        <br />
-                                        <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
-                                    </div>
-                                </a>
+                            <div class="col">
+                                <div class="card h-100" style="width: 10rem;">
+                                    <a asp-action="Details" asp-route-id="@item.ID">
+                                        <img src=@Html.DisplayFor(modelItem => item.Picture.Url) class="card-img-top" alt="...">
+                                        <button type="button" class="btn"><i class="cart-image"></i></button>
+                                        <div class="card-footer text-center">
+                                            <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
+                                            <br />
+                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Author)</small>
+                                            <br />
+                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</tbody >
-
+    </tbody>
 
 
 
 
 
 
-    <script src="~/js/book/list.js"></script>
+
+    
