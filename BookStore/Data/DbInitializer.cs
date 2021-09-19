@@ -20,15 +20,11 @@ namespace BookStore.Data
             }
 
 
-            Genre novel = new Genre { Name = " רומן " };
-            Genre thriller = new Genre { Name = "מותחן" };
-
-            context.Genres.AddRange(novel, thriller); 
-            context.SaveChanges();
+           
 
             #region Roles
             Role adminRole = new Role() { Name = RoleTypes.Admin };
-            Role customerRole = new Role { Name = RoleTypes.Customer };
+            Role customerRole = new Role() { Name = RoleTypes.Customer };
 
             context.Roles.AddRange(adminRole, customerRole);
             #endregion
@@ -75,6 +71,45 @@ namespace BookStore.Data
             #endregion
 
 
+            #region Genre
+            Genre novel = new Genre { Name = " רומן " };
+            Genre thriller = new Genre { Name = "מותחן" };
+
+            context.Genres.AddRange(novel, thriller);
+            context.SaveChanges();
+            #endregion
+
+            #region Author
+            Author author = new Author();
+            author.Name = "ריק ריירדן";
+            author.BirthDate = new DateTime(1964, 6, 5, 0, 0, 0);
+            author.Description = "ריק ריירדן הוא סופר נוער אמריקני עטור פרסים. כנער הִרבּה לקרוא סיפורי מיתולוגיה וספרי פנטזיה ומדע בדיוני.";
+            context.Authors.Add(author);
+            context.SaveChanges();
+            #endregion
+
+            #region Age Catagory
+            AgeCategory ageCategory = new AgeCategory();
+            ageCategory.Name = "נוער";
+            context.AgeCategories.Add(ageCategory);
+            context.SaveChanges();
+            #endregion
+
+            #region Books
+            Book book = new Book();
+            book.AgeCategory = ageCategory;
+            book.Name = "פרסי גקסון וגנב הברק";
+            book.Picture = new Picture();
+            book.Description = "הספר הוא הרומן הראשון בסדרת פרסי ג'קסון והאולימפיים המבוססת על המיתולוגיה היוונית, שמספרת את עלילותיו הבדיוניות של האל למחצה – פרסי ג'קסון.";
+            book.PublishDate = new DateTime(2008, 6, 28, 0, 0, 0);
+            book.Price = 113;
+            book.NumberOfPages = 375;
+            book.QuantityInStock = 4;
+            book.Language = hebrewLang;
+            book.Genre = novel;
+            context.Books.Add(book);
+            context.SaveChanges();
+            #endregion
         }
 
     }
