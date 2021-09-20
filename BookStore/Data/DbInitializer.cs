@@ -81,7 +81,7 @@ namespace BookStore.Data
 
             #region Picture
             Picture picture = new Picture();
-            picture.url = "https://upload.wikimedia.org/wikipedia/he/thumb/5/56/%D7%A4%D7%A8%D7%A1%D7%99_%D7%92%27%D7%A7%D7%A1%D7%95%D7%9F_%D7%95%D7%94%D7%90%D7%9C%D7%95%D7%9E%D7%A4%D7%99%D7%99%D7%9D.jpg/200px-%D7%A4%D7%A8%D7%A1%D7%99_%D7%92%27%D7%A7%D7%A1%D7%95%D7%9F_%D7%95%D7%94%D7%90%D7%9C%D7%95%D7%9E%D7%A4%D7%99%D7%99%D7%9D.jpg";
+            picture.Url = "https://upload.wikimedia.org/wikipedia/he/thumb/5/56/%D7%A4%D7%A8%D7%A1%D7%99_%D7%92%27%D7%A7%D7%A1%D7%95%D7%9F_%D7%95%D7%94%D7%90%D7%9C%D7%95%D7%9E%D7%A4%D7%99%D7%99%D7%9D.jpg/200px-%D7%A4%D7%A8%D7%A1%D7%99_%D7%92%27%D7%A7%D7%A1%D7%95%D7%9F_%D7%95%D7%94%D7%90%D7%9C%D7%95%D7%9E%D7%A4%D7%99%D7%99%D7%9D.jpg";
             context.Pictures.AddRange(picture);
             context.SaveChanges();
             #endregion
