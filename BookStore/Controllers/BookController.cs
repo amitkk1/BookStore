@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+
 namespace BookStore.Controllers
 {
     public class BookController : Controller
@@ -19,7 +21,8 @@ namespace BookStore.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Books.ToListAsync());
+            return View(await _context.Books.Include(a => a.Author).Include(p => p.Picture).ToListAsync());
+            
         }
 
         public IActionResult Create()
@@ -38,6 +41,12 @@ namespace BookStore.Controllers
             return Json(genreList);
         }
 
+        public JsonResult GetAgeCategoryList()
+        {
+            List<AgeCategory> ageCategoryList = _context.AgeCategories.ToList();
+            return Json(ageCategoryList);
+        }
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +55,8 @@ namespace BookStore.Controllers
             }
 
             var book = await _context.Books
+                .Include(a => a.Author)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {

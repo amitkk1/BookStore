@@ -5,11 +5,23 @@
 
 
 $(document).ready(function () {
-        $.get("GetGenreList", function (data) {
-            $("#GenreId").empty
+    $.get("GetGenreList", function (data) {
+        console.log(data);
+           $("#GenreId").empty
             $.each(data, function (index, row) {
-                $("#GenreId").append("<option value='" + row.ID + "'>" + row.Name + "<option>")
+                $("#GenreId").append("<option value='" + row.id + "' >" + row.name + "</option>")
             });
         });
 });
+
+$(document).ready(function () {
+    $.get("GetAgeCategoryList", function (data) {
+        console.log(data);
+        $("#AgeCategoryId").empty
+        $.each(data, function (index, row) {
+            $("#AgeCategoryId").append("<option value='" + row.id + "' >" + row.name + "</option>")
+        });
+    });
+});
+
 

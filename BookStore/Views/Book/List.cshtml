@@ -16,28 +16,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
-                    <select id="GenreId" style="width:200px">
-                        <option>Select Country</option>
+                    <select id="GenreId" style="width:150px">
+                        <option>זאנר</option>
+                    </select>
+                    <select id="AgeCategoryId" style="width:150px">
+                        <option>קבוצת גיל</option>
                     </select>
                 </div>
+                
                 <div class="col-sm-10">
                     <div class="row row-cols-auto">
                         @foreach (var item in Model)
                         {
 
                             <div class="col">
+                                <p>@Html.DisplayFor(modelItem => item.Picture.Url)</p>
                                 <div class="card h-100" style="width: 10rem;">
                                     <a asp-action="Details" asp-route-id="@item.ID">
-                                        <img src=@Html.DisplayFor(modelItem => item.Picture.Url) class="card-img-top" alt="...">
-                                        <button type="button" class="btn"><i class="cart-image"></i></button>
+                                        <img src="" class="card-img-top" alt="...">
+
                                         <div class="card-footer text-center">
                                             <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
                                             <br />
-                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Author)</small>
+                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Author.Name)</small>
                                             <br />
                                             <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
                                         </div>
                                     </a>
+                                    <button type="button" class="btn"><i class="cart-image"></i></button>
                                 </div>
                             </div>
                         }
