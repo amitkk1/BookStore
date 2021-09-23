@@ -5,6 +5,7 @@
 }
 
 <link rel="stylesheet" href="~/css/book/list.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
 @section Scripts
 {
     <script src="~/js/book/list.js"></script>
@@ -15,7 +16,7 @@
     <tbody>
         <div class="container">
             <div class="row">
-                <div class="col-sm-2">
+                @*<div class="col-sm-2">*@
                     <select id="GenreId" style="width:150px">
                         <option>זאנר</option>
                     </select>
@@ -24,26 +25,41 @@
                     </select>
                 </div>
                 
-                <div class="col-sm-10">
+                @*<div class="col-sm-10">*@
                     <div class="row row-cols-auto">
                         @foreach (var item in Model)
                         {
 
-                            <div class="col">
-                                <p>@Html.DisplayFor(modelItem => item.Picture.Url)</p>
-                                <div class="card h-100" style="width: 10rem;">
-                                    <a asp-action="Details" asp-route-id="@item.ID">
-                                        <img src="" class="card-img-top" alt="...">
+                            @*<div class="col">
+                <p>@Html.DisplayFor(modelItem => item.Picture.Url)</p>
+                <div class="card " style="width: 10rem;">
+                    <button type="button" class="btn-card"><i class="cart-image"></i></button>
+                    <a asp-action="Details" asp-route-id="@item.ID">
+                        <img src="https://s3-eu-west-1.amazonaws.com/simania-public-assets/bookimages/covers95/957733.jpg" class="card-img-top" alt="...">
+                        <div class="card-footer h-100 text-center">
+                            <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
+                            <br />
+                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Author.Name)</small>
+                            <br />
+                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
+                        </div>
+                    </a>
+                </div>
+            </div>*@
 
-                                        <div class="card-footer text-center">
-                                            <small class="text-muted font-weight-bold">@Html.DisplayFor(modelItem => item.Name)</small>
-                                            <br />
-                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Author.Name)</small>
-                                            <br />
-                                            <small class="text-muted">@Html.DisplayFor(modelItem => item.Price) ₪</small>
+                            <div class="col-md-3">
+                                <div class="small-box-c">
+                                    <div class="small-img-b">
+                                        <img class="img-responsive" src=@Html.DisplayFor(modelItem => item.Picture.Url) alt="#" />
+                                    </div>
+                                    <div class="dit-t clearfix">
+                                        <div class="right-ti">
+                                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                                            <p>@Html.DisplayFor(modelItem => item.Author.Name)</p>
                                         </div>
-                                    </a>
-                                    <button type="button" class="btn"><i class="cart-image"></i></button>
+                                        <a tabindex="0">₪@Html.DisplayFor(modelItem => item.Price)</a>
+                                    </div>
+                                    <button type="button" class="btn-cart"><i class="cart-image"></i></button>
                                 </div>
                             </div>
                         }

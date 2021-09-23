@@ -20,7 +20,7 @@ namespace BookStore.Data
             }
 
 
-           
+
 
             #region Roles
             Role adminRole = new Role() { Name = RoleTypes.Admin };
