@@ -171,7 +171,6 @@ label.radio {
 
 .credit-inputs {
     background: #fff;
-    color: #fff !important;
     border-color: #fff;
 }
 
@@ -218,7 +217,6 @@ label.radio {
 }
 
 .remove-product-icon {
-    width: 30px;
     cursor:pointer;
 }
 
