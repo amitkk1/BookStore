@@ -114,7 +114,7 @@ namespace BookStore.Data
             book.QuantityInStock = 4;
             book.Language = hebrewLang;
             book.Genre = novel;
-            context.Books.Add(book);
+            context.Books.AddRange(book,book,book);
             context.SaveChanges();
             #endregion
         }
