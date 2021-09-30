@@ -12,9 +12,7 @@ $(document).ready(function () {
                 $("#GenreId").append("<option value='" + row.id + "' >" + row.name + "</option>")
             });
         });
-});
 
-$(document).ready(function () {
     $.get("GetAgeCategoryList", function (data) {
         console.log(data);
         $("#AgeCategoryId").empty
@@ -22,6 +20,24 @@ $(document).ready(function () {
             $("#AgeCategoryId").append("<option value='" + row.id + "' >" + row.name + "</option>")
         });
     });
+
+   
 });
 
+function genreFilter(genre) {
+    //$.get("ByGenre", { genreFilter: genre });
+    $.ajax({
+        type: "post",
+        datatype: "json",
+        url: "/book/ByGenre",
+        async: true,
+        success: function (data) {
+            $("#someDiv").html(data);
+        }
+    });
+}
+
+function ageFilter(age) {
+    $.get("List", { ageFilter: age });
+}
 

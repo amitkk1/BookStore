@@ -30,14 +30,70 @@ namespace BookStore.Controllers
             return View();
         }
 
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List(int genreFilter, int ageFilter)
         {
-
+            ViewData["CurrentFilter"] = genreFilter;
             var books = await _context.Books
                 .Include(img => img.Picture)
                 .Include(a => a.Author)
                 .ToListAsync();
+            if (genreFilter > 0)
+            {
+                books = await _context.Books
+               .Include(img => img.Picture)
+               .Include(a => a.Author)
+               .Include(g => g.Genre).Where(b => b.Genre.ID == genreFilter)
+               .ToListAsync();
+
+            }
+            if (ageFilter > 0)
+            {
+                books = await _context.Books
+                .Include(img => img.Picture)
+                .Include(a => a.Author)
+                .Include(age => age.AgeCategory).Where(b => b.AgeCategory.ID == ageFilter)
+                .ToListAsync();
+
+            }
+
+            /*if (!String.IsNullOrEmpty(genreFilter))
+            {
+                books = await _context.Books
+               .Include(img => img.Picture)
+               .Include(a => a.Author)
+               .Include(g => g.Genre).Where(b => b.Genre.Name == genreFilter)
+               .ToListAsync();
+
+            }
+            if (!String.IsNullOrEmpty(ageFilter))
+            {
+                books = await _context.Books
+                .Include(img => img.Picture)
+                .Include(a => a.Author)
+                .Include(age => age.AgeCategory).Where(b => b.AgeCategory.Name == ageFilter)
+                .ToListAsync();
+
+            }*/
             return View(books);
+        }
+            
+        [HttpPost]  
+        public async Task<IActionResult> ByGenre(int genreFilter)
+        {
+            var books = await _context.Books
+                .Include(img => img.Picture)
+                .Include(a => a.Author)
+                .ToListAsync();
+            if (genreFilter > 0)
+            {
+                books = await _context.Books
+               .Include(img => img.Picture)
+               .Include(a => a.Author)
+               .Include(g => g.Genre).Where(b => b.Genre.ID == genreFilter)
+               .ToListAsync();
+
+            }
+            return PartialView("listPartial",books);
         }
 
         public JsonResult GetGenreList()
