@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <img src="https://s3-eu-west-1.amazonaws.com/simania-public-assets/bookimages/covers95/957733.jpg" class="img-fluid rounded-start" alt="...">
+                        <img src=@Html.DisplayFor(model => model.Picture.Url) class="img-fluid rounded-start" alt="...">
                     </div>
 
                 </div>
@@ -33,9 +33,6 @@
         
     
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 

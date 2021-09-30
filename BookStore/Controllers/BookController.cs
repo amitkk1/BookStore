@@ -21,8 +21,8 @@ namespace BookStore.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Books.Include(a => a.Author).Include(p => p.Picture).ToListAsync());
-            
+            return View(await _context.Books.ToListAsync());
+
         }
 
         public IActionResult Create()
@@ -32,7 +32,12 @@ namespace BookStore.Controllers
 
         public async Task<IActionResult> List()
         {
-            return View(await _context.Books.ToListAsync());
+
+            var books = await _context.Books
+                .Include(img => img.Picture)
+                .Include(a => a.Author)
+                .ToListAsync();
+            return View(books);
         }
 
         public JsonResult GetGenreList()
@@ -55,8 +60,8 @@ namespace BookStore.Controllers
             }
 
             var book = await _context.Books
+                .Include(img => img.Picture)
                 .Include(a => a.Author)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
