@@ -24,20 +24,17 @@ $(document).ready(function () {
    
 });
 
-function genreFilter(genre) {
-    //$.get("ByGenre", { genreFilter: genre });
+
+
+function bookFilter() {
     $.ajax({
         type: "post",
-        datatype: "json",
+        data: { "genreFilter": $('#GenreId').val(), "ageFilter": $('#AgeCategoryId').val() },
         url: "/book/ByGenre",
         async: true,
         success: function (data) {
-            $("#someDiv").html(data);
+            $("#booksFilter").html(data);
         }
     });
-}
-
-function ageFilter(age) {
-    $.get("List", { ageFilter: age });
 }
 

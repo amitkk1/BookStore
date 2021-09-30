@@ -16,25 +16,17 @@
 
 <tbody>
     <div class="container">
-        <select onchange="genreFilter(this.value)" id="GenreId" style="width:150px">
+        <select onchange="bookFilter()" id="GenreId" style="width:150px">
             <option>זאנר</option>
         </select>
-        <select onchange="ageFilter(this.value)" id="AgeCategoryId" style="width:150px">
+        <select onchange="bookFilter()" id="AgeCategoryId" style="width:150px">
             <option>קבוצת גיל</option>
         </select>
 
-        <form asp-action="List" method="get">
-            <div class="form-actions no-color">
-                <p>
-                    Find by name: <input type="text" name="genreFilter" value="@ViewData["CurrentFilter"]" />
-                    <input type="submit" value="Search" class="btn btn-default" /> |
-                    <a asp-action="List">Back to Full List</a>
-                </p>
-            </div>
-        </form>
-
-        <div id="someDiv">fri</div>
-        @Html.Partial("listPartial", Model);
+        <div id="booksFilter">
+            @Html.Partial("listPartial", Model);
+        </div>
+        
 
 
 
