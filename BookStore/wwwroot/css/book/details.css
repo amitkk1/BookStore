@@ -1,0 +1,28 @@
+﻿.card {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    background-color: rgb(182 137 115 / 0.10);
+}
+
+.card-body {
+   text-align:right;
+   
+}
+
+.img {
+    
+    margin-top: auto;
+    margin-bottom: auto;
+    height: fit-content;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}

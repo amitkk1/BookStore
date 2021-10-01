@@ -9,6 +9,7 @@
 @section Scripts
 {
     <script src="~/js/book/list.js"></script>
+    <script src="https://kit.fontawesome.com/2a94c23774.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"</script>
 }
 <h1 class="navbar-title-text">הספרים שלנו</h1>
@@ -16,22 +17,18 @@
 
 <tbody>
     <div class="container">
-        <select onchange="bookFilter()" id="GenreId" style="width:150px">
-            <option>זאנר</option>
-        </select>
-        <select onchange="bookFilter()" id="AgeCategoryId" style="width:150px">
-            <option>קבוצת גיל</option>
-        </select>
-
+        <div class="filters">
+            <select onchange="bookFilter()" id="GenreId" class="dropdown" style="width:150px">
+                <option>זאנר</option>
+            </select>
+            <select onchange="bookFilter()" id="AgeCategoryId" class="dropdown" style="width:150px">
+                <option>קבוצת גיל</option>
+            </select>
+            
+        </div>
         <div id="booksFilter">
             @Html.Partial("listPartial", Model);
         </div>
-        
-
-
-
-
-
     </div>
 
 </tbody>

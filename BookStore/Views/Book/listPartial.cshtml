@@ -4,7 +4,7 @@
 <div class="row row-cols-auto">
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-sm-3">
+        <div class="flex-wrapper col-md-3 col-sm-3">
             <div class="small-box-c">
 
                 <div class="small-img-b">
@@ -17,10 +17,13 @@
                         <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
                         <p>@Html.DisplayFor(modelItem => item.Author.Name)</p>
                     </div>
-                    <a tabindex="0">₪@Html.DisplayFor(modelItem => item.Price)</a>
+                    <div class="left-ti">
+                        <a tabindex="0">₪@Html.DisplayFor(modelItem => item.Price)</a>
+                        <button type="button" class="btn-cart"><i class="fas fa-plus"> הוסף לסל</i></button>
+                    </div>
                 </div>
 
-                <button type="button" class="btn-cart"><i class="cart-image"></i></button>
+
 
             </div>
 

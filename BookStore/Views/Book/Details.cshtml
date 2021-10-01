@@ -4,35 +4,37 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<link rel="stylesheet" href="~/css/book/details.css" />
 
-<div>
-    <h4>Book</h4>
-    
-    
-        <div class="container">
-            <div class="card ">
-                <div class="row g-0">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">  @Html.DisplayFor(model => model.Name)</h5>
-                            <p class="card-text">@Html.DisplayFor(model => model.Author.Name) מחבר:</p>
-                            <p class="card-text">@Html.DisplayFor(model => model.Price) מחיר:</p>
-                            <p class="card-text">@Html.DisplayFor(model => model.NumberOfPages) מס עמודים:</p>
-                            <p class="card-text">@Html.DisplayFor(model => model.PublishDate) תאריך הוצאה לאור:</p>
-                            <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.Description)</small></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <img src=@Html.DisplayFor(model => model.Picture.Url) class="img-fluid rounded-start" alt="...">
-                    </div>
+@section Scripts
+{
+    <script src="~/js/book/details.js"></script>
+    <script src="https://kit.fontawesome.com/2a94c23774.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"</script>
+}
 
+<div class="container">
+    <div class="card ">
+        <div class="row g-0">
+            <div class="col-md-7 col-sm-12">
+                <div class="card-body">
+                    <h3 class="card-title">  @Html.DisplayFor(model => model.Name)</h3>
+                    <p class="card-text"> מחבר/ת: @Html.DisplayFor(model => model.Author.Name)</p>
+                    <p class="card-text"> מחיר: @Html.DisplayFor(model => model.Price) ש"ח</p>
+                    <p class="card-text"> מס עמודים: @Html.DisplayFor(model => model.NumberOfPages) </p>
+                    <p class="card-text" id="date"> שנת הוצאה לאור: @Html.DisplayFor(model => model.PublishDate.Year)</p>
+                    <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.Description)</small></p>
                 </div>
             </div>
+            <div class="img col-md-5 col-sm-11">
+                <img src=@Html.DisplayFor(model => model.Picture.Url) class="img-fluid rounded-start" alt="...">
+            </div>
+
         </div>
-        
-    
+    </div>
 </div>
+
+
 
 
 
