@@ -8,7 +8,11 @@ namespace BookStore.Models
     public class Picture
     {
         public int ID { get; set; }
-        public byte[] PictureData { get; set; }
+        
+        //public byte[] PictureData { get; set; }
+
+        public string Url { get; set; }
+
         public bool IsValid { get; set; } = true;
     }
 }
