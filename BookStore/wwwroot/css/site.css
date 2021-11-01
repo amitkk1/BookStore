@@ -238,6 +238,16 @@ label.radio {
 /********************* LOGIN CSS ********************/
 
 .submit-button {
+      background-color: #b68973;
+    color: #fff;
+}
+
+/*********************** USER PROFILE CSS ***********************/
+.detailList li {
+    list-style: none;
+}
+
+.edit-profile-button {
     background-color: #b68973;
     color: #fff;
 }

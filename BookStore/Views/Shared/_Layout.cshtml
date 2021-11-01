@@ -34,12 +34,16 @@
     </div>
     <div class="cart-container">
         <i class="cart-container-image">
-            <span class="cart-container-number">1</span>
+            <span class="cart-container-number" name="cart-item-count">1</span>
         </i>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/transactions/cart.js" asp-append-version="true"></script>
+    <script defer>
+        updateCartBookCountElements();
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
