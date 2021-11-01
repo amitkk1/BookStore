@@ -38,8 +38,8 @@ namespace BookStore.Controllers
         {
             try
             {
-                float totalPrice = _context.Books
-                    .AsEnumerable()
+                float totalPrice = (await _context.Books
+                    .ToListAsync())
                     .Join(cart,
                         dbBook => dbBook.ID,
                         cartBook => cartBook.ID,
