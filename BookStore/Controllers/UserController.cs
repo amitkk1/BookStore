@@ -103,6 +103,11 @@ namespace BookStore.Controllers
             return claimsPrincipal;
         }
 
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+        
         public async Task<IActionResult> Profile()
         {
             return View();
