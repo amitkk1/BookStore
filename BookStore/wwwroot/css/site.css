@@ -233,3 +233,14 @@ label.radio {
     height: 30px;
     justify-content: center;
 }
+
+
+/*********************** USER PROFILE CSS ***********************/
+.detailList li {
+    list-style: none;
+}
+
+.edit-profile-button {
+    background-color: #b68973;
+    color: #fff;
+}
