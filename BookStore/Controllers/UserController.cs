@@ -102,5 +102,10 @@ namespace BookStore.Controllers
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
             return claimsPrincipal;
         }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
     }
 }
