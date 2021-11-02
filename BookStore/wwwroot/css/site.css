@@ -248,11 +248,15 @@ label.radio {
 }
 
 
-/********************* LOGIN CSS ********************/
+/********************* LOGIN / NEW CSS ********************/
 
 .submit-button {
       background-color: #b68973;
     color: #fff;
+}
+
+.login-card-border {
+    border-radius: 1rem;
 }
 
 /*********************** USER PROFILE CSS ***********************/

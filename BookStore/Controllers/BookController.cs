@@ -22,7 +22,6 @@ namespace BookStore.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Books.ToListAsync());
-
         }
 
         public IActionResult Create()

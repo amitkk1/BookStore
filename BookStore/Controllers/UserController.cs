@@ -116,5 +116,10 @@ namespace BookStore.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> New()
+        {
+            return View();
+        }
     }
 }
