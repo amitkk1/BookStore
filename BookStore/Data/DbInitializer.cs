@@ -4,6 +4,8 @@ using BookStore.Types.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.Data
@@ -64,9 +66,14 @@ namespace BookStore.Data
             user.PhoneNumber = "0545358441";
             user.Role = context.Roles.First(a => a.Name == RoleTypes.Admin);
             user.PasswordSalt = "abcdefg";
-            user.EncryptedPassword = "391D04361CE0DDD96B24FA34C0EAA82881D79FD35854C52608FDF38B8223F2DB";
+            HashAlgorithm sha256 = new SHA256Managed();
+            byte[] saltAndPasswordBytes = Encoding.UTF8.GetBytes("password" + user.PasswordSalt);
+            byte[] hash = sha256.ComputeHash(saltAndPasswordBytes);
+            user.EncryptedPassword = Convert.ToBase64String(hash);
             context.Users.Add(user);
             context.SaveChanges();
+
+            
             #endregion
 
             #region Genre
