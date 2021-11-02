@@ -72,7 +72,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     display: flex;
-    bottom: 5%;
+    bottom: 15%;
     left: 1%;
     background-color: #1e212d;
     padding: 15px;
@@ -106,6 +106,19 @@ span.cart-container-number {
     right: 0;
     border-radius: 50%;
     box-sizing: border-box;
+}
+
+.footer-container {
+    position: fixed;
+    bottom: 0px;
+    background-color: #1e212d;
+    padding: 15px;
+    width: 100%;
+}
+
+.footer-about-button {
+    background-color: #b68973;
+    color: #fff;
 }
 
 /************************** CART CSS **************************/
