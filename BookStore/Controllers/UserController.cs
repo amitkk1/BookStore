@@ -42,7 +42,7 @@ namespace BookStore.Controllers
                 EncryptWithSalt(password, user.PasswordSalt) != user.EncryptedPassword)
             {
                 TempData["ErrorMessage"] = "מייל או סיסמה לא תקינים";
-                return View("user/login");
+                return Redirect("/user/login");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace BookStore.Controllers
                 await HttpContext.SignInAsync(claimPrincipal);
             }
 
-            return View("/");
+            return Redirect("/");
         }
 
         [HttpPost]
@@ -58,7 +58,7 @@ namespace BookStore.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return View("/");
+            return Redirect("/");
         }
 
         [HttpPost]
