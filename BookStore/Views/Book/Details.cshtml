@@ -18,9 +18,13 @@
         <div class="row g-0">
             <div class="col-md-7 col-sm-12">
                 <div class="card-body">
-                    <h3 class="card-title">  @Html.DisplayFor(model => model.Name)</h3>
-                    <p class="card-text"> מחבר/ת: @Html.DisplayFor(model => model.Author.Name)</p>
-                    <p class="card-text"> מחיר: @Html.DisplayFor(model => model.Price) ש"ח</p>
+                    <h2 class="card-title">  @Html.DisplayFor(model => model.Name)</h2>
+                    <h5 class="card-text">  @Html.DisplayFor(model => model.Author.Name)</h5>
+                    <div class="cart-div">
+                        <span class="card-text"> @Html.DisplayFor(model => model.Price) ש"ח</span>
+                        <button type="button" class="btn-cart  rounded-pill"><i class="cart-image"> הוסף לסל</i></button>
+
+                    </div>
                     <p class="card-text"> מס עמודים: @Html.DisplayFor(model => model.NumberOfPages) </p>
                     <p class="card-text" id="date"> שנת הוצאה לאור: @Html.DisplayFor(model => model.PublishDate.Year)</p>
                     <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.Description)</small></p>

@@ -6,8 +6,9 @@
 }
 
 .card-body {
-   text-align:right;
-   
+    text-align: right;
+    padding-right: 50px;
+    padding-top: 50px;
 }
 
 .img {
@@ -25,4 +26,46 @@
     margin-left: auto;
     margin-top: 4%;
     margin-bottom: 4%;
+}
+
+.btn-cart {
+    font-family: Rubik;
+    background-color: #b68973;
+    border: none;
+    color: white;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-right: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-style: solid;
+}
+
+
+.cart-div{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+i.cart-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../../lib/pictures/white-cart.png);
+    padding-left: 28px;
+}
+
+
+
+button.btn-cart:hover {
+    background-color: rgb(182 137 115 / 0.10);
+    border-color: #b68973;
+    border-style: solid;
+    color: #b68973;
+}
+
+button.btn-cart:hover i.cart-image{
+    background-image: url(../../lib/pictures/brown-cart.png);
 }
