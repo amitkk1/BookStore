@@ -35,7 +35,14 @@
             @RenderBody()
         </main>
     </div>
-    <footer id="footer" class="flex-shrink-0 py-4 bg-dark text-white-50 footer-container">
+    <div class="cart-container">
+        <i class="cart-container-image">
+            <span class="cart-container-number" name="cart-item-count">0</span>
+        </i>
+    </div>
+    <div class="clear py-5">
+    </div>
+    <footer id="footer" class="flex-shrink-0 py-3 bg-dark text-white-50 footer-container">
         <div class="container text-center footer-about-text">
             <form style="display: inline" action="/Home/About" method="get">
                 <button class="btn btn-dark footer-about-button">הכירו אותנו</button>
@@ -45,11 +52,6 @@
             <small>Copyright &copy; www.adoredbooks.com</small>
         </div>
     </footer>
-    <div class="cart-container">
-        <i class="cart-container-image">
-            <span class="cart-container-number" name="cart-item-count">0</span>
-        </i>
-    </div>
     @if (User.IsInRole(RoleTypes.Admin))
     {
         <a class="analytics-container" href="/analytics">
