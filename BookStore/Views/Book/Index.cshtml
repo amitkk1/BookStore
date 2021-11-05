@@ -1,83 +1,42 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "List";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PublishDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuantityInStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsValid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Picture.Url)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantityInStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsValid)
-            </td>
-            <td>
-                @Html.DisplayNameFor(modelItem => item.Picture.Url)
-            </td>
-            <td>
-                @Html.DisplayNameFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+<link rel="stylesheet" href="~/css/book/list.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+@section Scripts
+{
+    <script src="~/js/book/list.js"></script>
+    <script src="https://kit.fontawesome.com/2a94c23774.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"</script>
 }
-    </tbody>
-</table>
+<h1 class="navbar-title-text">הספרים שלנו</h1>
+
+
+<tbody>
+    <div class="container">
+        <div class="filters">
+            <select onchange="bookFilter()" id="GenreId" class="dropdown" style="width:150px">
+                <option>זאנר</option>
+            </select>
+            <select onchange="bookFilter()" id="AgeCategoryId" class="dropdown" style="width:150px">
+                <option>קבוצת גיל</option>
+            </select>
+            
+        </div>
+        <div id="booksFilter">
+            @Html.Partial("listPartial", Model);
+        </div>
+    </div>
+
+</tbody>
+
+
+
+
+
+
+
+

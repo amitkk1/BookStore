@@ -19,17 +19,13 @@ namespace BookStore.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Books.ToListAsync());
-        }
 
         public IActionResult Create()
         {
             return View();
         }
 
-        public async Task<IActionResult> List(int genreFilter, int ageFilter)
+        public async Task<IActionResult> Index(int genreFilter, int ageFilter)
         {
             var books = await _context.Books
                 .Include(img => img.Picture)
