@@ -153,6 +153,11 @@ i.analytics-container-image {
     color: #fff;
 }
 
+.clear {
+    clear:both;
+    height: 100px;
+}
+
 /************************** CART CSS **************************/
 
 .payment-info {
