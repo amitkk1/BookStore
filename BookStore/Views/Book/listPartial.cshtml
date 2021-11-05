@@ -19,7 +19,7 @@
                     </div>
                     <div class="left-ti">
                         <a tabindex="0">₪@Html.DisplayFor(modelItem => item.Price)</a>
-                        <button onclick="addToCart(@item.ID.ToString(), '@item.Name' , 1)"
+                        <button onclick="addToCart(@item.ID.ToString(), '@item.Name.ToString()', '@item.Author.Name.ToString()', '@item.Picture.Url.ToString()', 1)"
                                 type="button" class="btn-cart" id="addToCartButton">
                             <i class="fas fa-plus"> הוסף לסל</i>
                         </button>

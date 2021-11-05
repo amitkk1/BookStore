@@ -1,4 +1,4 @@
-﻿function addToCart(id, name, count) {
+﻿function addToCart(id, name, author, url, count) {
     var cart = [];
     var cartStr = localStorage.getItem("cart");
     if (cartStr) {
@@ -9,7 +9,7 @@
         var bookIndex = cart.findIndex(a => a.id === id);
         cart[bookIndex].count += count;
     } else {
-        cart.push({ id, name, count });
+        cart.push({ id, name, author, url, count });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartBookCountElements();
