@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +33,16 @@ namespace BookStore.Controllers
         public async Task<IActionResult> Login(string email, string password)
         {
             
-            User user = _dbContext.Users.FirstOrDefault(dbUser => 
+            
+            User user = _dbContext.Users.Include(a => a.Role).FirstOrDefault(dbUser => 
                 dbUser.Email.ToLower().Equals(email.ToLower()));
 
             //if the user doesn't exists in the database, or gave the wrong password
             if(user == null || 
-                EncryptWithSalt(password, user.PasswordSalt) != user.PasswordSalt)
+                EncryptWithSalt(password, user.PasswordSalt) != user.EncryptedPassword)
             {
                 TempData["ErrorMessage"] = "מייל או סיסמה לא תקינים";
-                return View("user/login");
+                return Redirect("/user/login");
             }
             else
             {
@@ -48,7 +50,7 @@ namespace BookStore.Controllers
                 await HttpContext.SignInAsync(claimPrincipal);
             }
 
-            return View();
+            return Redirect("/");
         }
 
         [HttpPost]
@@ -56,7 +58,7 @@ namespace BookStore.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return View("/");
+            return Redirect("/");
         }
 
         [HttpPost]
@@ -81,17 +83,19 @@ namespace BookStore.Controllers
             HashAlgorithm sha256 = new SHA256Managed();
             byte[] saltAndPasswordBytes = Encoding.UTF8.GetBytes(password + salt);
             byte[] hash = sha256.ComputeHash(saltAndPasswordBytes);
-            return Convert.ToBase64String(hash);
+            string result = Convert.ToBase64String(hash);
+            return result;
         }
         private ClaimsPrincipal GetUserClaimPricipal(User user)
         {
+
             //claim is basically a key value pair. 
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.GivenName, user.FirstName),
                 new Claim(ClaimTypes.Surname, user.LastName),
-                new Claim(ClaimTypes.Name, user.FirstName + user.LastName),
+                new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName),
                 new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
                 new Claim(ClaimTypes.Role, user.Role.Name)
             };
@@ -101,6 +105,21 @@ namespace BookStore.Controllers
             //claims principal is the security context. since we only have to authenticate the user, it only holds the user claims
             ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
             return claimsPrincipal;
+        }
+
+        public async Task<IActionResult> Login()
+        {
+            return View();
+        }
+        
+        public async Task<IActionResult> Profile()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> New()
+        {
+            return View();
         }
     }
 }
