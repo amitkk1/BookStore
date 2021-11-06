@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BookStore.Models.User>
+
+@{
+    ViewData["Title"] = "Manage";
+}
+
+<link rel="stylesheet" href="~/css/user/manageUsers.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-3 h-30">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-10 col-xl-10">
+                <div class="card bg-dark text-white login-card-border">
+                    <div class="card-body p-8 text-center">
+                        <h2 class="fw-bold mb-2 text-uppercase py-2">נהל את משתמשי האתר</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <label class="users-table-text">מזהה</label>
+                                    </th>
+                                    <th>
+                                        <label class="users-table-text">שם פרטי</label>
+                                    </th>
+                                    <th>
+                                        <label class="users-table-text">שם משפחה</label>
+                                    </th>
+                                    <th>
+                                        <label class="users-table-text">מייל</label>
+                                    </th>
+                                    <th>
+                                        <label class="users-table-text">מספר טלפון</label>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (@Model != null)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="users-table-text">
+                                                @Html.DisplayFor(modelItem => item.ID)
+                                            </td>
+                                            <td class="users-table-text">
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                            </td>
+                                            <td class="users-table-text">
+                                                @Html.DisplayFor(modelItem => item.LastName)
+                                            </td>
+                                            <td class="users-table-text">
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td class="users-table-text">
+                                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                            </td>
+                                            <td class="users-table-text">
+                                                @Html.ActionLink("ערוך", "Edit", new { id = item.ID }) |
+                                                @Html.ActionLink("מחק", "Delete", new { id = item.ID })
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
