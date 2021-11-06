@@ -112,7 +112,7 @@ namespace BookStore.Controllers
             return View();
         }
 
-        public async Task<IActionResult> New()
+        public async Task<IActionResult> Registar()
         {
             return View();
         }
