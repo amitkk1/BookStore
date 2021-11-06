@@ -30,25 +30,6 @@ namespace BookStore.Data
             context.Roles.AddRange(adminRole, customerRole);
             #endregion
 
-            #region Districts
-            District centerDistrict = new District { Name = "מרכז" };
-            District northDistrict = new District { Name = "צפון" };
-            District haifaDistrict = new District { Name = "חיפה" };
-            District telAvivDistrict = new District { Name = "תל אביב" };
-            District jerusalemDistrict = new District { Name = "ירושלים" };
-            District southDistrict = new District { Name = "דרום" };
-
-            context.Districts.AddRange(
-                centerDistrict,
-                northDistrict,
-                haifaDistrict,
-                telAvivDistrict,
-                jerusalemDistrict,
-                southDistrict
-                );
-            context.SaveChanges();
-            #endregion
-
             #region Languages
             Language hebrewLang = new Language { Name = "עברית" };
             Language russianLang = new Language { Name = "רוסית" };
