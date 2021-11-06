@@ -111,11 +111,6 @@ namespace BookStore.Controllers
         {
             return View();
         }
-        
-        public async Task<IActionResult> Profile()
-        {
-            return View();
-        }
 
         public async Task<IActionResult> New()
         {
