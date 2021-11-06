@@ -108,9 +108,6 @@ span.cart-container-number {
     box-sizing: border-box;
 }
 
-
-
-
 .analytics-container {
     cursor: pointer;
     position: fixed;
@@ -301,7 +298,7 @@ label.radio {
     list-style: none;
 }
 
-.edit-profile-button {
+.edit-button {
     background-color: #b68973;
     color: #fff;
 }
