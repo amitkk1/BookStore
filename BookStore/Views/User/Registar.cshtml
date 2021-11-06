@@ -20,13 +20,13 @@
                                 <div class="row d-flex align-content-between">
                                     <div class="form-outline form-white mb-2 col-6">
                                         <input asp-for="FirstName" type="text" id="typeFirstName" class="form-control form-control-lg" size="15"
-                                               pattern="[A-Za-z]{1,15}" required />
+                                                placeholder="עד 15 אותיות" pattern="[A-Za-z]{1,15}" required />
                                         <label asp-for="FirstName" class="form-label">שם פרטי</label>
                                         <span asp-validation-for="FirstName" class="text-danger"></span>
                                     </div>
                                     <div class="form-outline form-white mb-2 col-6">
                                         <input asp-for="LastName" type="text" id="typeLastName" class="form-control form-control-lg" size="15"
-                                               pattern="[A-Za-z]{1,15}" required />
+                                               placeholder="עד 15 אותיות" pattern="[A-Za-z]{1,15}" required />
                                         <label asp-for="LastName" class="form-label">שם משפחה</label>
                                         <span asp-validation-for="LastName" class="text-danger"></span>
                                     </div>
