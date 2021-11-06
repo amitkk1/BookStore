@@ -13,7 +13,6 @@ namespace BookStore.Data
         {
             
         }
-        public DbSet<District> Districts { get; set; }
         public DbSet<PickupLocation> PickupLocations { get; set; }
         public DbSet<AgeCategory> AgeCategories { get; set; }
         public DbSet<Author> Authors { get; set; }
