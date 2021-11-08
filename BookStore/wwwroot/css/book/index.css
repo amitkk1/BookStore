@@ -1,0 +1,20 @@
+﻿.cover {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 60px;
+}
+
+.table {
+    text-align: right
+}
+
+
+.table thead th {
+    vertical-align: middle;
+    
+}
+
+.search {
+    text-align: center;
+}

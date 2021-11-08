@@ -3,56 +3,69 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="~/css/book/index.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
 
-<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p class="search">
+            חפש לפי שם ספר או סופר: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <button type="submit" value="Search" class="btn btn-default" ><i class="fas fa-search"></i></button> |
+            <a asp-action="Index">אפס</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                שם הספר
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                שם הסופר
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PublishDate)
+                תאריך הוצאה לאור
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                מחיר
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumberOfPages)
+                מס עמודים
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuantityInStock)
+                כמות במלאי
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsValid)
+                זמין באתר
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Picture.Url)
+                תמונה
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author.Name)
+                תקציר
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Author.Name)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
+                @item.PublishDate.ToString("dd/MM/yyyy")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -67,17 +80,19 @@
                 @Html.DisplayFor(modelItem => item.IsValid)
             </td>
             <td>
-                @Html.DisplayNameFor(modelItem => item.Picture.Url)
+                <img class="cover" src=@Html.DisplayFor(modelItem => item.Picture.Url) alt="#" />
             </td>
             <td>
-                @Html.DisplayNameFor(modelItem => item.Name)
+                <details>
+                    <summary></summary>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </details>
             </td>
+
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID">ערוך</a> 
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
