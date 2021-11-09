@@ -44,34 +44,90 @@ namespace BookStore.Controllers
         public IActionResult Create()
         {
             PopulateGenreDropDownList();
+            PopulateLanguageDropDownList();
+            PopulateAgeCategoryDropDownList();
+            PopulateAuthorDropDownList();
+            PopulatePictureDropDownList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, [Bind("ID,Name,Description,PublishDate,Price,NumberOfPages," +
-            "QuantityInStock,AgeCategoryID,GenreID,AuthorID,LanguageID,IsValid")] Book book)
+        public async Task<IActionResult> Create(int id, [Bind("ID,Name,Description,PublishDate,Price,NumberOfPages," +
+            "QuantityInStock,AgeCategoryID,GenreID,AuthorID,LanguageID,PictureID")] Book book)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Books.Add(book);
-                    _context.SaveChanges();
-                    
-                    return RedirectToAction("Index");
-                }
+                _context.Add(book);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            catch (RetryLimitExceededException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.)
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-            }
-            PopulateGenreDropDownList(book.Genre);
+            PopulateGenreDropDownList(book.GenreID);
+            PopulateLanguageDropDownList(book.LanguageID);
+            PopulateAgeCategoryDropDownList(book.AgeCategoryID);
+            PopulateAuthorDropDownList(book.AuthorID);
+            PopulatePictureDropDownList(book.PictureID);
             return View(book);
         }
-        
-                   
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Books
+                .AsNoTracking()
+                .FirstOrDefaultAsync(b => b.ID == id.Value);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            PopulateGenreDropDownList(book.GenreID);
+            PopulateLanguageDropDownList(book.LanguageID);
+            PopulateAgeCategoryDropDownList(book.AgeCategoryID);
+            PopulateAuthorDropDownList(book.AuthorID);
+            PopulatePictureDropDownList(book.PictureID);
+            return View(book);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var bookToUpdate = await _context.Books.FirstOrDefaultAsync(b => b.ID == id);
+            if (await TryUpdateModelAsync<Book>(bookToUpdate,
+                "",
+                b => b.Name, b => b.Description, b => b.PublishDate, b => b.Price,
+                b => b.NumberOfPages, b => b.QuantityInStock, b => b.AuthorID, b => b.AgeCategoryID,
+                b => b.GenreID, b => b.IsValid, b => b.PictureID, b => b.LanguageID))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            PopulateGenreDropDownList(bookToUpdate.GenreID);
+            PopulateLanguageDropDownList(bookToUpdate.LanguageID);
+            PopulateAgeCategoryDropDownList(bookToUpdate.AgeCategoryID);
+            PopulateAuthorDropDownList(bookToUpdate.AuthorID);
+            PopulatePictureDropDownList(bookToUpdate.PictureID);
+            return View(bookToUpdate);
+        }
 
         public async Task<IActionResult> List(int genreFilter, int ageFilter ,string searchString)
         {
@@ -89,7 +145,26 @@ namespace BookStore.Controllers
                           .AsNoTracking()
                           .ToListAsync());
         }
-            
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Books
+                .Include(img => img.Picture)
+                .Include(a => a.Author)
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+
         [HttpPost]  
         public async Task<IActionResult> ByGenre(int genreFilter, int ageFilter)
         {
@@ -136,112 +211,7 @@ namespace BookStore.Controllers
             List<AgeCategory> ageCategoryList = _context.AgeCategories.ToList();
             return Json(ageCategoryList);
         }
-        
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var book = await _context.Books
-                .Include(img => img.Picture)
-                .Include(a => a.Author)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (book == null)
-            {
-                return NotFound();
-            }
-
-            return View(book);
-        }
-
-        // GET: Book/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var book = await _context.Books
-                .Include(img => img.Picture)
-                .Include(a => a.Author)
-                .Include(g => g.Genre)
-                .Include(c => c.AgeCategory)
-                .Include(l => l.Language)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(i => i.ID == id.Value); 
-            if (book == null)
-            {
-                return NotFound();
-            }
-            PopulateGenreDropDownList(book.Genre.ID);
-            return View(book);
-        }
-
-        // POST: Book/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost ]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Description,PublishDate,Price,NumberOfPages," +
-            "QuantityInStock,AgeCategory,Genre,Author,Language,IsValid")] Book book)
-        {
-            if (id != book.ID)
-            {
-                return NotFound();
-            }
-            PopulateGenreDropDownList(book.Genre);
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Entry(book).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
-                }
-                catch (DataException)
-                {
-                    //Log the error (uncomment dex variable name after DataException and add a line here to write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            
-                return RedirectToAction(nameof(Index));
-            }
-            PopulateGenreDropDownList(book.Genre);
-            return View(book);
-
-        }
-
-       /* [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var bookToUpdate = _context.Books.Find(id);
-            if (TryUpdateModelAsync(bookToUpdate, "",new string[] { "Title", "Credits", "DepartmentID" }))
-            {
-                try
-                {
-                    _context.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-                catch (System.Data.Entity.Infrastructure.RetryLimitExceededException *//* dex *//*)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            }
-            PopulateGenreDropDownList(bookToUpdate.Genre.ID);
-            return View(bookToUpdate);
-        }
-*/
-
-
+       
         private bool BookExists(int id)
         {
             return _context.Books.Any(e => e.ID == id);
@@ -250,10 +220,44 @@ namespace BookStore.Controllers
         private void PopulateGenreDropDownList(object selectedGenre = null)
         {
 
-            var genreQuery = from b in _context.Books
-                             orderby b.Genre.Name
-                             select b.Genre;
-            ViewBag.GenreID = new SelectList(genreQuery, "ID", "Name", selectedGenre);
+            var genreQuery = from g in _context.Genres
+                             orderby g.Name
+                             select g;
+            ViewBag.GenreID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+        }
+
+        private void PopulateAuthorDropDownList(object selectedGenre = null)
+        {
+
+            var genreQuery = from g in _context.Authors
+                             orderby g.Name
+                             select g;
+            ViewBag.AuthorID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+        }
+
+        private void PopulateAgeCategoryDropDownList(object selectedGenre = null)
+        {
+
+            var genreQuery = from g in _context.AgeCategories
+                             orderby g.Name
+                             select g;
+            ViewBag.AgeCategoryID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+        }
+        private void PopulateLanguageDropDownList(object selectedGenre = null)
+        {
+
+            var genreQuery = from g in _context.Languages
+                             orderby g.Name
+                             select g;
+            ViewBag.LanguageID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+        }
+        private void PopulatePictureDropDownList(object selectedGenre = null)
+        {
+
+            var genreQuery = from g in _context.Pictures
+                             orderby g.Url
+                             select g;
+            ViewBag.PictureID = new SelectList(genreQuery.AsNoTracking(), "ID", "Url", selectedGenre);
         }
 
     }

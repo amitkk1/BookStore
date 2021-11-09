@@ -4,66 +4,112 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<link rel="stylesheet" href="~/css/book/edit.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
 
-<h4>Book</h4>
+<h4></h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">שם הספר</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label">תקציר הספר</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PublishDate" class="control-label">תאריך הוצאה לאור</label>
-                <input asp-for="PublishDate" class="form-control" />
-                <span asp-validation-for="PublishDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label">מחיר</label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfPages" class="control-label">מס עמודים</label>
-                <input asp-for="NumberOfPages" class="form-control" />
-                <span asp-validation-for="NumberOfPages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QuantityInStock" class="control-label">כמות במלאי</label>
-                <input asp-for="QuantityInStock" class="form-control" />
-                <span asp-validation-for="QuantityInStock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="GenreID">זאנר</label>
-                <div class="col-md-10">
-                    <input type="" asp-for="Genre.ID" /> @Html.DropDownList("GenreID", String.Empty)
-                    @Html.ValidationMessageFor(model => model.Genre)
-                </div>
-            </div>
-            <div class=" form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
-                    </label>
-                </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Name" class="control-label">שם הספר</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Author" class="control-label">שם הסופר</label>
+                    <select asp-for="AuthorID" class="form-control" asp-items="ViewBag.AuthorID">
+                        <option value="">-- בחר סופר --</option>
+                    </select>
+                    <span asp-validation-for="AuthorID" class="text-danger" />
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Language" class="control-label">שפה</label>
+                    <select asp-for="LanguageID" class="form-control" asp-items="ViewBag.LanguageID">
+                        <option value="">-- בחר שפה --</option>
+                    </select>
+                    <span asp-validation-for="LanguageID" class="text-danger" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="PublishDate" class="control-label">תאריך הוצאה לאור</label>
+                    <input asp-for="PublishDate" class="form-control" />
+                    <span asp-validation-for="PublishDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Description" class="control-label">תקציר</label>
+            <textarea asp-for="Description" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6 ">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Genre" class="control-label">ז'אנר</label>
+                    <select asp-for="GenreID" class="form-control" asp-items="ViewBag.GenreID">
+                        <option value="">-- בחר ז'אנר --</option>
+                    </select>
+                    <span asp-validation-for="GenreID" class="text-danger" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="AgeCategory" class="control-label">קטגוריית גיל</label>
+                    <select asp-for="AgeCategoryID" class="form-control" asp-items="ViewBag.AgeCategoryID">
+                        <option value="">-- בחר קטגוריה --</option>
+                    </select>
+                    <span asp-validation-for="AgeCategoryID" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label asp-for="NumberOfPages" class="control-label">מס עמודים</label>
+                    <input asp-for="NumberOfPages" class="form-control" />
+                    <span asp-validation-for="NumberOfPages" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="Price" class="control-label">מחיר</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="QuantityInStock" class="control-label">כמות במלאי</label>
+                    <input asp-for="QuantityInStock" class="form-control" />
+                    <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Picture" class="control-label">תמונה</label>
+            <select asp-for="PictureID" class="form-control" asp-items="ViewBag.PictureID">
+                <option value="">-- בחר תמונה --</option>
+            </select>
+            <span asp-validation-for="PictureID" class="text-danger" />
+        </div>
+    </div>
+
+
+
+    <div class="form-row">
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <a class="backToList" asp-action="Index">חזור לרשימת הספרים</a>
+        </div>
+    </div>
+
+
+
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
