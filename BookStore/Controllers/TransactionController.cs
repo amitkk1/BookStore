@@ -39,7 +39,6 @@ namespace BookStore.Controllers
                            .Include(c => c.Customer)
                            .Include(s => s.Status)
                            .Include(p => p.PickupLocation)
-                           .ThenInclude(d => d.District)
                            .AsNoTracking()
                            .ToListAsync());
         }
@@ -78,14 +77,13 @@ namespace BookStore.Controllers
 
             var transaction = await _context.Transactions
                 .Include(p => p.PickupLocation)
-                 .ThenInclude(d => d.District)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.ID == id.Value);
             if (transaction == null)
             {
                 return NotFound();
             }
-            PopulatePickupLocationDropDownList(transaction.PickupLocation.District.ID);
+            PopulatePickupLocationDropDownList(transaction.PickupLocationID);
             PopulateTransactionStatuseDropDownList(transaction.StatusID);
             PopulateUserDropDownList(transaction.CustomerID);
             return View(transaction);
@@ -100,8 +98,7 @@ namespace BookStore.Controllers
                 return NotFound();
             }
 
-            var transactionToUpdate = await _context.Transactions.Include(p => p.PickupLocation)
-                           .ThenInclude(d => d.District).FirstOrDefaultAsync(b => b.ID == id);
+            var transactionToUpdate = await _context.Transactions.Include(p => p.PickupLocation).FirstOrDefaultAsync(b => b.ID == id);
             if (await TryUpdateModelAsync<Transaction>(transactionToUpdate,
                 "",
                 b => b.Price, b => b.DateOfPurchase, 
@@ -160,8 +157,7 @@ namespace BookStore.Controllers
         private void PopulatePickupLocationDropDownList(object selectedDistrict = null)
         {
 
-            var districtQuery = from d in _context.Districts
-                        orderby d.Name
+            var districtQuery = from d in _context.PickupLocations
                              select d;
             ViewBag.DistrictID = new SelectList(districtQuery.AsNoTracking(), "ID", "Name", selectedDistrict);
         }
@@ -171,7 +167,7 @@ namespace BookStore.Controllers
             var transactionStatuseQuery = from t in _context.TransactionStatuses
                         orderby t.Name
                         select t;
-            ViewBag.TransactionStatuseID = new SelectList(transactionStatuseQuery.AsNoTracking(), "ID", "Name", selectedTransactionStatuse);
+            ViewBag.TransactionStatuseID = new SelectList(transactionStatuseQuery.AsNoTracking(), "ID", "City", selectedTransactionStatuse);
         }
         private void PopulateUserDropDownList(object selectedUser = null)
         {

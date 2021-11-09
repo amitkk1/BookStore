@@ -24,7 +24,7 @@ namespace BookStore.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> AdminList(string searchString)
         {
             ViewData["CurrentFilter"] = searchString;
             var book = from b in _context.Books
@@ -64,7 +64,7 @@ namespace BookStore.Controllers
             {
                 _context.Add(book);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AdminList));
             }
             PopulateGenreDropDownList(book.GenreID);
             PopulateLanguageDropDownList(book.LanguageID);
@@ -123,7 +123,7 @@ namespace BookStore.Controllers
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AdminList));
             }
             PopulateGenreDropDownList(bookToUpdate.GenreID);
             PopulateLanguageDropDownList(bookToUpdate.LanguageID);
