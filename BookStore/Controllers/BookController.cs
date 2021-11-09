@@ -23,6 +23,7 @@ namespace BookStore.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index(string searchString)
         {
             ViewData["CurrentFilter"] = searchString;
@@ -41,6 +42,7 @@ namespace BookStore.Controllers
                            .ToListAsync());
         }
 
+
         public IActionResult Create()
         {
             PopulateGenreDropDownList();
@@ -51,10 +53,12 @@ namespace BookStore.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, [Bind("ID,Name,Description,PublishDate,Price,NumberOfPages," +
             "QuantityInStock,AgeCategoryID,GenreID,AuthorID,LanguageID,PictureID")] Book book)
+
         {
             if (ModelState.IsValid)
             {

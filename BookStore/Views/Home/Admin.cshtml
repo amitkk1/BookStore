@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="container p-3">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+                <div class="container d-flex align-items-end" style="border-bottom:1px solid black">
+                    <h2 class="my-3">ברוכים הבאים לממשק הניהול</h2>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between row">
+            <form style="display: inline" action="/User/Manage" method="get">
+                <button class="btn edit-button m-2"><span><i class="fas fa-user-edit ml-2"></i></span>ניהול משתמשים</button>
+            </form>
+            <form style="display: inline" action="/PickUpLocations" method="get">
+                <button class="btn edit-button m-2"><span><i class="fas fa-thumbtack ml-2"></i></span>ניהול מקומות איסוף</button>
+            </form>
+            <button class="btn edit-button m-2"><span><i class="as fa-copyright ml-2"></i></span>ניהול סופרים</button>
+            <button class="btn edit-button m-2"><span><i class="fas fa-book-open ml-2"></i></span>ניהול ספרים</button>
+            <button class="btn edit-button m-2"><span><i class="fas fa-money-check ml-2"></i></span>ניהול הזמנות</button>
+            <button class="btn edit-button m-2"><span><i class="fas fa-chart-line ml-2"></i></span>הצגת אנליטיקות</button>
+        </div>
+    </div>
+</div>
+

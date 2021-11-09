@@ -108,6 +108,35 @@ span.cart-container-number {
     box-sizing: border-box;
 }
 
+.analytics-container {
+    cursor: pointer;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    bottom: 15%;
+    left: 7%;
+    background-color: #1e212d;
+    padding: 15px;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 0.2s;
+}
+
+    .analytics-container:hover {
+        transform: scale(1.2);
+    }
+
+i.analytics-container-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../lib/pictures/pie-chart.png);
+    width: 50px;
+    height: 50px;
+}
+
+
+
 .footer-container {
     position: fixed;
     bottom: 0px;
@@ -119,6 +148,11 @@ span.cart-container-number {
 .footer-about-button {
     background-color: #b68973;
     color: #fff;
+}
+
+.clear {
+    clear:both;
+    height: 100px;
 }
 
 /************************** CART CSS **************************/
@@ -264,7 +298,7 @@ label.radio {
     list-style: none;
 }
 
-.edit-profile-button {
+.edit-button {
     background-color: #b68973;
     color: #fff;
 }
