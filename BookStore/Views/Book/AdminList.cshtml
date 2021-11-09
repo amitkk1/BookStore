@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<BookStore.Models.Book>
 
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "AdminList";
 }
 <link rel="stylesheet" href="~/css/book/index.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
 
 
 
-<form asp-action="Index" method="get" class="search-nav">
+<form asp-action="AdminList" method="get" class="search-nav">
     <div class="row justify-content-center">
         
         <div class="row">
@@ -21,7 +21,7 @@
                 <button type="submit" value="Search" class="btn btn-default"><i class="fas fa-search"></i></button>
             </div>
             <div>
-                <a class="asp-action" asp-action="Index">אפס</a>
+                <a class="asp-action" asp-action="AdminList">אפס</a>
                 <a class="asp-action" asp-action="Create">הוסף ספר חדש</a>
             </div>
 
