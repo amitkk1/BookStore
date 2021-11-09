@@ -28,15 +28,12 @@ namespace BookStore.Controllers
                               select t;
             if (!String.IsNullOrEmpty(searchString))
             {
-                transaction = transaction.Where(t => t.Customer.FirstName.Contains(searchString)
-                                        || t.Customer.PhoneNumber.Contains(searchString)
-                                        || t.Customer.ID.Equals(searchString)
-                                        || t.Customer.Email.Contains(searchString)
-                                       || t.Customer.LastName.Contains(searchString));
+                transaction = transaction.Where(t => t.CustomerID.ToString().Contains(searchString)
+                                        || t.ID.ToString().Contains(searchString));
+                                       
             }
 
             return View(await transaction
-                           .Include(c => c.Customer)
                            .Include(s => s.Status)
                            .Include(p => p.PickupLocation)
                            .AsNoTracking()
@@ -54,7 +51,7 @@ namespace BookStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, [Bind("ID,Description,DateOfPurchase,Price," +
-            "CustomerID,StatusID/*,PickupLocationID*/")] Transaction transaction)
+            "CustomerID,StatusID,PickupLocationID")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +59,7 @@ namespace BookStore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            /*PopulatePickupLocationDropDownList(transaction.PickupLocationID);*/
+            PopulatePickupLocationDropDownList(transaction.PickupLocationID);
             PopulateTransactionStatuseDropDownList(transaction.StatusID);
             PopulateUserDropDownList(transaction.CustomerID);
             return View(transaction);
@@ -76,7 +73,6 @@ namespace BookStore.Controllers
             }
 
             var transaction = await _context.Transactions
-                .Include(p => p.PickupLocation)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(b => b.ID == id.Value);
             if (transaction == null)
@@ -102,7 +98,7 @@ namespace BookStore.Controllers
             if (await TryUpdateModelAsync<Transaction>(transactionToUpdate,
                 "",
                 b => b.Price, b => b.DateOfPurchase, 
-                b => b.CustomerID,  /*b => b.PickupLocationID,*/ b => b.StatusID))
+                b => b.CustomerID, b => b.PickupLocationID, b => b.StatusID))
             {
                 try
                 {
@@ -117,7 +113,7 @@ namespace BookStore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            /*PopulatePickupLocationDropDownList(transactionToUpdate.PickupLocationID);*/
+            PopulatePickupLocationDropDownList(transactionToUpdate.PickupLocationID);
             PopulateTransactionStatuseDropDownList(transactionToUpdate.StatusID);
             PopulateUserDropDownList(transactionToUpdate.CustomerID);
             return View(transactionToUpdate);
