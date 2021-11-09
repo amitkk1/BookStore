@@ -1,0 +1,45 @@
+﻿@model BookStore.Models.PickupLocation
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row d-flex py-2">
+    <h1 dir="rtl">
+        עריכת מקומות איסוף
+    </h1>
+</div>
+<hr />
+<div class="container py-3 text-right">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="City" class="control-label">עיר</label>
+                    <input asp-for="City" class="form-control" size="15" placeholder="עד 15 אותיות" pattern="[A-Za-z]{1,15}"/>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Street" class="control-label">רחוב</label>
+                    <input asp-for="Street" class="form-control" size="20" placeholder="עד 20 אותיות וספרות" pattern="[A-Za-z0-9]{1,15}"/>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check row">
+                    <label class="form-check-label text-left">
+                        <label dir="rtl" class="px-2">מיקום פעיל למשלוחים?</label>
+                        <input class="form-check-input" asp-for="IsValid"/>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="שמור שינויים" class="btn edit-button" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index"><i class="fas fa-arrow-circle-left fa-5x text-black-50"></i></a>
+</div>
+
