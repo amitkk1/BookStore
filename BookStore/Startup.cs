@@ -58,6 +58,7 @@ namespace BookStore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
+
                     pattern: "{controller=Book}/{action=Index}/{id?}");
             });
         }

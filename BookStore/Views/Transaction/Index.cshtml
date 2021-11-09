@@ -1,7 +1,7 @@
-﻿@model IEnumerable<BookStore.Models.Book>
+﻿@model IEnumerable<BookStore.Models.Transaction>
 
 @{
-    ViewData["Title"] = "List";
+    ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/css/book/index.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
         
         <div class="row">
             <div>
-                חפש לפי שם ספר או סופר:
+                חפש לפי פרטי לקוח:
             </div>
             &nbsp;&nbsp;
             <div >
@@ -22,7 +22,7 @@
             </div>
             <div>
                 <a class="asp-action" asp-action="Index">אפס</a>
-                <a class="asp-action" asp-action="Create">הוסף ספר חדש</a>
+                <a class="asp-action" asp-action="Create">הוסף הזמנה חדשה</a>
             </div>
 
         </div>
@@ -33,32 +33,24 @@
     <thead>
         <tr>
             <th>
-                שם הספר
+                מספר הזמנה
             </th>
             <th>
-                שם הסופר
+                תאריך ביצוע
             </th>
             <th>
-                תאריך הוצאה לאור
+                מספר לקוח
             </th>
             <th>
                 מחיר
             </th>
             <th>
-                מס עמודים
+                סטטוס הזמנה
             </th>
             <th>
-                כמות במלאי
+                מיקום איסןף
             </th>
-            <th>
-                זמין באתר
-            </th>
-            <th>
-                תמונה
-            </th>
-            <th>
-                תקציר
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -67,36 +59,25 @@
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.Name)
+                @Html.DisplayFor(modelItem => item.DateOfPurchase)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
+                @Html.DisplayFor(modelItem => item.Customer.ID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPages)
+                @Html.DisplayFor(modelItem => item.Status.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuantityInStock)
+                @Html.DisplayFor(modelItem => item.PickupLocation.District.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsValid)
-            </td>
-            <td>
-                <img class="cover" src=@Html.DisplayFor(modelItem => item.Picture.Url) alt="#" />
-            </td>
-            <td>
-                <details>
-                    <summary></summary>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </details>
-            </td>
+            
 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">ערוך</a> 

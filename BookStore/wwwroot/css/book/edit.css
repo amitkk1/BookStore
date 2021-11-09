@@ -1,0 +1,9 @@
+﻿.form-group {
+    text-align: right;
+}
+.form-row > .col, .form-row > [class*=col-] {
+    align-self: baseline;
+}
+.backToList {
+    padding-right: 15px;
+}
