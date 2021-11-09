@@ -15,6 +15,21 @@
     
 }
 
-.search {
+.search-nav {
+   
+    margin-top: 16px;
+}
+
+
+a.asp-action {
+    color: #09294c;
+    text-decoration: none;
+    background-color: rgb(182 137 115 / 0.10);
+    border: 1px solid #09294c;
+    padding: 2px 5px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    margin: 3px;
 }

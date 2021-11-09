@@ -7,18 +7,27 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p class="search">
-            חפש לפי שם ספר או סופר: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <button type="submit" value="Search" class="btn btn-default" ><i class="fas fa-search"></i></button> |
-            <a asp-action="Index">אפס</a>
-        </p>
-    </div>
+<form asp-action="Index" method="get" class="search-nav">
+    <div class="row justify-content-center">
+        
+        <div class="row">
+            <div>
+                חפש לפי שם ספר או סופר:
+            </div>
+            &nbsp;&nbsp;
+            <div >
+                <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <button type="submit" value="Search" class="btn btn-default"><i class="fas fa-search"></i></button>
+            </div>
+            <div>
+                <a class="asp-action" asp-action="Index">אפס</a>
+                <a class="asp-action" asp-action="Create">הוסף ספר חדש</a>
+            </div>
+
+        </div>
+        </div>
+
 </form>
 <table class="table">
     <thead>
@@ -65,7 +74,7 @@
             </td>
 
             <td>
-                @item.PublishDate.ToString("dd/MM/yyyy")
+                @Html.DisplayFor(modelItem => item.PublishDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
