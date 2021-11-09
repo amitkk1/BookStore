@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BookStore.Models.Author>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/book/index.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+
+
+
+<form asp-action="Index" method="get" class="search-nav">
+    <div class="row justify-content-center">
+        
+        <div class="row">
+            <div>
+                חפש סופר
+            </div>
+            &nbsp;&nbsp;
+            <div >
+                <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <button type="submit" value="Search" class="btn btn-default"><i class="fas fa-search"></i></button>
+            </div>
+            <div>
+                <a class="asp-action" asp-action="Index">אפס</a>
+                <a class="asp-action" asp-action="Create">הוסף סופר חדש</a>
+            </div>
+
+        </div>
+        </div>
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                שם הסופר
+            </th>
+            <th>
+                תאריך לידה
+            </th>
+            <th>
+                תאריך פטירה
+            </th>
+            <th>
+                קורות חיים
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeathDate)
+            </td>
+            <td>
+                <details>
+                    <summary></summary>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </details>
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">ערוך</a> 
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

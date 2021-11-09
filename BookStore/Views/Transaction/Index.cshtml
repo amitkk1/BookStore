@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BookStore.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" href="~/css/book/index.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+
+
+
+<form asp-action="Index" method="get" class="search-nav">
+    <div class="row justify-content-center">
+        
+        <div class="row">
+            <div>
+                חפש לפי פרטי לקוח:
+            </div>
+            &nbsp;&nbsp;
+            <div >
+                <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <button type="submit" value="Search" class="btn btn-default"><i class="fas fa-search"></i></button>
+            </div>
+            <div>
+                <a class="asp-action" asp-action="Index">אפס</a>
+                <a class="asp-action" asp-action="Create">הוסף הזמנה חדשה</a>
+            </div>
+
+        </div>
+        </div>
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                מספר הזמנה
+            </th>
+            <th>
+                תאריך ביצוע
+            </th>
+            <th>
+                מספר לקוח
+            </th>
+            <th>
+                מחיר
+            </th>
+            <th>
+                סטטוס הזמנה
+            </th>
+            <th>
+                מיקום איסןף
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPurchase)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickupLocation.District.Name)
+            </td>
+            
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">ערוך</a> 
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

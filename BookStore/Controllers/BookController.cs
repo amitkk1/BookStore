@@ -27,13 +27,13 @@ namespace BookStore.Controllers
         {
             ViewData["CurrentFilter"] = searchString;
             var book = from b in _context.Books
-                           select b;
+                       select b;
             if (!String.IsNullOrEmpty(searchString))
             {
-                 book = book.Where(b => b.Name.Contains(searchString)
-                                       || b.Author.Name.Contains(searchString));
+                book = book.Where(b => b.Name.Contains(searchString)
+                                      || b.Author.Name.Contains(searchString));
             }
-           
+
             return View(await book
                            .Include(img => img.Picture)
                            .Include(a => a.Author)
@@ -226,38 +226,38 @@ namespace BookStore.Controllers
             ViewBag.GenreID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
         }
 
-        private void PopulateAuthorDropDownList(object selectedGenre = null)
+        private void PopulateAuthorDropDownList(object selectedAuthor = null)
         {
 
             var genreQuery = from g in _context.Authors
                              orderby g.Name
                              select g;
-            ViewBag.AuthorID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+            ViewBag.AuthorID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedAuthor);
         }
 
-        private void PopulateAgeCategoryDropDownList(object selectedGenre = null)
+        private void PopulateAgeCategoryDropDownList(object selectedAgeCategory = null)
         {
 
             var genreQuery = from g in _context.AgeCategories
                              orderby g.Name
                              select g;
-            ViewBag.AgeCategoryID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+            ViewBag.AgeCategoryID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedAgeCategory);
         }
-        private void PopulateLanguageDropDownList(object selectedGenre = null)
+        private void PopulateLanguageDropDownList(object selectedLanguag = null)
         {
 
             var genreQuery = from g in _context.Languages
                              orderby g.Name
                              select g;
-            ViewBag.LanguageID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedGenre);
+            ViewBag.LanguageID = new SelectList(genreQuery.AsNoTracking(), "ID", "Name", selectedLanguag);
         }
-        private void PopulatePictureDropDownList(object selectedGenre = null)
+        private void PopulatePictureDropDownList(object selectedPicture = null)
         {
 
             var genreQuery = from g in _context.Pictures
                              orderby g.Url
                              select g;
-            ViewBag.PictureID = new SelectList(genreQuery.AsNoTracking(), "ID", "Url", selectedGenre);
+            ViewBag.PictureID = new SelectList(genreQuery.AsNoTracking(), "ID", "Url", selectedPicture);
         }
 
     }
